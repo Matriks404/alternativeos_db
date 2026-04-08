@@ -52,7 +52,7 @@
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://www.haiku-os.org/"},
-            { "text": "Haiku News", "url": "https://www.haiku-os.org/news/"}
+            { "text": "Haiku News", "url": "https://www.haiku-os.org/news/"},
             { "text": "What is Haiku?", "url": "https://www.haiku-os.org/about/" }
         ]
     },
