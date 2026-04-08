@@ -3,7 +3,11 @@
         "name": "AIX (IBM)",
         "family": "Unix",
         "purpose": "Server, Mainframe",
-        "latestRelease": "7.3 TL4",
+        "latestRelease": {
+                "versionNumber": "7.3 TL4",
+                "title": "Placeholder",
+                "url": "https://example.com/"
+        },
         "releaseDate": "2025-12-15",
         "license": "Proprietary",
         "cost": "Paid ($$$)",
@@ -16,26 +20,32 @@
         "name": "FreeBSD",
         "family": "Unix-like (BSD)",
         "purpose": "General purpose",
-        "latestRelease": "15.0-RELEASE",
+        "latestRelease": {
+                "versionNumber": "15.0-RELEASE",
+                "title": "FreeBSD 15.0-RELEASE Release Notes",
+                "url": "https://www.freebsd.org/releases/15.0R/relnotes/"
+        },
         "releaseDate": "2025-12-02",
         "license": "BSD",
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://www.freebsd.org/" },
-            { "text": "About FreeBSD", "url": "https://www.freebsd.org/about/" },
-            { "text": "FreeBSD 15.0-RELEASE Release Notes", "url": "https://www.freebsd.org/releases/15.0R/relnotes/" }
+            { "text": "About FreeBSD", "url": "https://www.freebsd.org/about/" }
         ]
     },
     {
         "name": "Haiku",
         "family": "BeOS-compatible",
         "purpose": "Desktop",
-        "latestRelease": "R1/beta5",
+        "latestRelease": {
+                "versionNumber": "R1/beta5",
+                "title": "R1/beta5 - Release Notes",
+                "url": "https://www.haiku-os.org/get-haiku/r1beta5/release-notes/"
+        },
         "releaseDate": "2024-09-13",
         "license": "MIT",
         "cost": "Free",
         "links": [
-            { "text": "R1/beta5 - Release Notes", "url": "https://www.haiku-os.org/get-haiku/r1beta5/release-notes/" },
             { "text": "What is Haiku?", "url": "https://www.haiku-os.org/about/" }
         ]
     },
@@ -44,7 +54,11 @@
         "name": "HP-UX",
         "family": "Unix",
         "purpose": "Server",
-        "latestRelease": "11i v3",
+          "latestRelease": {
+                "versionNumber": "11iv3",
+                "title": "Placeholder",
+                "url": "https://example.com/"
+        },
         "releaseDate": "2025-12-31",
         "license": "Proprietary",
         "cost": "Paid",
@@ -59,9 +73,9 @@
         "purpose": "General purpose",
         "latestRelease": {
                 "versionNumber": "10.1",
-                "url": "https://www.netbsd.org/releases/formal-10/NetBSD-10.1.html",
-                "title": "Announcing NetBSD 10.1"
-            },
+                "title": "Announcing NetBSD 10.1",
+                "url": "https://www.netbsd.org/releases/formal-10/NetBSD-10.1.html"
+        },
         "releaseDate": "2024-12-16",
         "license": "BSD",
         "cost": "Free",
@@ -75,14 +89,17 @@
         "name": "ReactOS",
         "family": "NT-compatible",
         "purpose": "Desktop",
-        "latestVersion": "0.4.15",
+        "latestRelease": {
+                "versionNumber": "0.4.15",
+                "title": "ReactOS 0.4.15 Released",
+                "url": "https://reactos.org/project-news/reactos-0415-released/"
+        },
         "releaseDate": "2025-03-21",
         "license": "GPL",
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://reactos.org/" },
-            { "text": "What is ReactOS?", "url": "https://reactos.org/what-is-reactos/" },
-            { "text": "ReactOS 0.4.15 Released", "url": "https://reactos.org/project-news/reactos-0415-released/" }
+            { "text": "What is ReactOS?", "url": "https://reactos.org/what-is-reactos/" }
         ]
     },
     {
@@ -90,12 +107,15 @@
         "name": "Ubuntu",
         "family": "Unix-like (Linux)",
         "purpose": "General purpose",
-        "latestVersion": "25.10",
+        "latestRelease": {
+                "versionNumber": "25.10",
+                "title": "Ubuntu 25.10 release notes",
+                "url": "https://documentation.ubuntu.com/release-notes/25.10/"
+        },
         "releaseDate": "2025-10-09",
         "license": "GPL",
         "cost": "Free",
         "links": [
-            { "text": "Ubuntu 25.10 release notes", "url": "https://documentation.ubuntu.com/release-notes/25.10/" },
             { "text": "About the Ubuntu project", "url": "https://ubuntu.com/about" }
         ]
     }
