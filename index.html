@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternative OS Database - Unix-like & Other alternative OS's'</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Alternative OS Database</h1>
+        <p class="subtitle">A curated status board for still-supported or historically significant Unix-like operating systems and other important operating systems.</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search OS name, usage, license...">
+    </div>
+
+    <div class="table-container">
+        <table id="osTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('osName')">OS Name ⇵</th>
+                    <th onclick="sortTable('family')">Family ⇵</th>
+                    <th>Usage</th>
+                    <th>Latest Vers.</th>
+                    <th onclick="sortTable('releaseDate')">Rel. Date ⇵</th>
+                    <th onclick="sortTable('license')">License ⇵</th>
+                    <th onclick="sortTable('cost')">Cost ⇵</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // --- JavaScript: Loading and Managing Data ---
+    let osData = [];
+    let currentSort = { column: 'releaseDate', direction: 'desc' }; // Default sort
+
+    // Fetch the JSON file
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('data.json')
+            .then(response => {
+                if (!response.ok) { throw new Error("Could not load data.json."); }
+                return response.json();
+            })
+            .then(data => {
+                osData = data;
+                renderTable(osData);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="8" style="text-align:center; color:red;">Error loading data. Make sure 'data.json' exists.</td></tr>`;
+            });
+    });
+
+    // Render data into the table body
+    function renderTable(data) {
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = ''; // Clear current rows
+
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:#aaa;">No matching systems found.</td></tr>`;
+            return;
+        }
+
+        // Apply sorting
+        const sortedData = [...data].sort((a, b) => {
+            const valA = a[currentSort.column];
+            const valB = b[currentSort.column];
+
+            // Specific handling for dates (ISO format)
+            if (currentSort.column === 'releaseDate') {
+                return currentSort.direction === 'asc'
+                    ? new Date(valA) - new Date(valB)
+                    : new Date(valB) - new Date(valA);
+            }
+
+            // Normal string handling
+            return currentSort.direction === 'asc'
+                ? valA.localeCompare(valB)
+                : valB.localeCompare(valA);
+        });
+
+        sortedData.forEach(os => {
+            const costClass = os.cost.includes("Free") ? "cost-free" : "cost-paid";
+            const rowHTML = `
+                <tr>
+                    <td><span class="os-name">${os.osName}</span></td>
+                    <td class="family">${os.family}</td>
+                    <td class="usage">${os.usage}</td>
+                    <td><span class="version">${os.latestVersion}</span></td>
+                    <td><span class="release-date">${os.releaseDate}</span></td>
+                    <td><span class="license">${os.license}</span></td>
+                    <td><span class="${costClass}">${os.cost}</span></td>
+                    <td>
+                        <ul class="links-list">
+                            ${os.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.text} →</a></li>`).join('')}
+                        </ul>
+                    </td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', rowHTML);
+        });
+    }
+
+    // Handle searching/filtering
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredData = osData.filter(os => {
+            // Check major fields for a match
+            return os.osName.toLowerCase().includes(searchTerm) ||
+                   os.family.toLowerCase().includes(searchTerm) ||
+                   os.usage.toLowerCase().includes(searchTerm) ||
+                   os.license.toLowerCase().includes(searchTerm);
+        });
+        renderTable(filteredData);
+    });
+
+    // Handle sorting when a header is clicked
+    function sortTable(columnName) {
+        if (currentSort.column === columnName) {
+            // Toggle direction
+            currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+        } else {
+            // Sort new column ascending
+            currentSort.column = columnName;
+            currentSort.direction = 'asc';
+        }
+        renderTable(osData);
+    }
+</script>
+
+</body>
+</html>

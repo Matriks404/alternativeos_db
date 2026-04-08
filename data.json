@@ -1,0 +1,84 @@
+[
+    {
+        "osName": "NetBSD",
+        "category": "Living Legend",
+        "family": "Unix-like (BSD)",
+        "usage": "General Purpose, Embedded, Server",
+        "latestVersion": "11.0 RC3",
+        "releaseDate": "2026-04-04",
+        "license": "BSD",
+        "cost": "Free",
+        "links": [
+            { "text": "Announcements", "url": "https://www.netbsd.org/releases/" },
+            { "text": "Status", "url": "https://www.netbsd.org/changes/" }
+        ]
+    },
+    {
+        "osName": "FreeBSD",
+        "category": "Living Legend",
+        "family": "Unix-like (BSD)",
+        "usage": "Server, Desktop, High-Perf Networking",
+        "latestVersion": "14.4-RELEASE",
+        "releaseDate": "2026-03-10",
+        "license": "BSD",
+        "cost": "Free",
+        "links": [
+            { "text": "Release Notes", "url": "https://www.freebsd.org/releases/" },
+            { "text": "Hobbyist Forum", "url": "https://forums.freebsd.org/" }
+        ]
+    },
+    {
+        "osName": "Haiku",
+        "category": "Independent/Clone",
+        "family": "BeOS Successor (not Unix)",
+        "usage": "Desktop, Personal Computing",
+        "latestVersion": "R1/Beta (Nightly)",
+        "releaseDate": "2026-04-01",
+        "license": "MIT",
+        "cost": "Free",
+        "links": [
+            { "text": "Activity", "url": "https://discuss.haiku-os.org/" },
+            { "text": "Nightly Builds", "url": "https://download.haiku-os.org/" }
+        ]
+    },
+    {
+        "osName": "ReactOS",
+        "category": "Independent/Clone",
+        "family": "NT Architecture (not Unix)",
+        "usage": "Desktop, Legacy Compatibility",
+        "latestVersion": "0.4.15-dev",
+        "releaseDate": "2026-01-23",
+        "license": "GPL",
+        "cost": "Free",
+        "links": [
+            { "text": "30th Anniv. Blog", "url": "https://reactos.org/blog/" },
+            { "text": "Status", "url": "https://reactos.org/wiki/Status" }
+        ]
+    },
+    {
+        "osName": "AIX (IBM)",
+        "category": "Living Legend",
+        "family": "Certified UNIX",
+        "usage": "Enterprise Server, Mainframe",
+        "latestVersion": "7.3 TL4",
+        "releaseDate": "2025-12-15",
+        "license": "Proprietary",
+        "cost": "Paid ($$$)",
+        "links": [
+            { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
+        ]
+    },
+    {
+        "osName": "HP-UX (HPE)",
+        "category": "Historical",
+        "family": "Certified UNIX",
+        "usage": "Server (Deprecated)",
+        "latestVersion": "11i v3 (Maint.)",
+        "releaseDate": "2025-12-31",
+        "license": "Proprietary / EOL",
+        "cost": "Paid (Maint.)",
+        "links": [
+            { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
+        ]
+    }
+]
