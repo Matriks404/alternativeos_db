@@ -48,7 +48,7 @@
         "links": [
             { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
         ]
-    }
+    },
     {
         "osName": "NetBSD",
         "family": "Unix-like (BSD)",
