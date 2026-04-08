@@ -108,6 +108,15 @@ tr:last-child td {
 }
 
 /* --- Data Specific Styling --- */
+.os-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    display: block; /* Prevents tiny gaps below the image */
+    margin: 0 auto; /* Centers it in the 50px column */
+}
+
 .os-name { font-weight: bold; font-size: 1rem; color: #fff; }
 .family { color: #aaa; }
 .usage { font-size: 0.85rem; color: #ddd; }
