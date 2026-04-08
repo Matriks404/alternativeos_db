@@ -41,10 +41,10 @@
         "osName": "HP-UX",
         "family": "Unix",
         "usage": "Server",
-        "latestVersion": "11i v3 (Maint.)",
+        "latestVersion": "11i v3",
         "releaseDate": "2025-12-31",
-        "license": "Proprietary / EOL",
-        "cost": "Paid (Maint.)",
+        "license": "Proprietary",
+        "cost": "Paid",
         "links": [
             { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
         ]
@@ -53,13 +53,13 @@
         "osName": "NetBSD",
         "family": "Unix-like (BSD)",
         "usage": "General purpose",
-        "latestVersion": "11.0 RC3",
-        "releaseDate": "2026-04-04",
+        "latestVersion": "10.1 RC3",
+        "releaseDate": "2024-12-16",
         "license": "BSD",
         "cost": "Free",
         "links": [
-            { "text": "Announcements", "url": "https://www.netbsd.org/releases/" },
-            { "text": "Status", "url": "https://www.netbsd.org/changes/" }
+            { "text": "Announcing NetBSD 10.1", "url": "https://www.netbsd.org/releases/formal-10/NetBSD-10.1.html" },
+            { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" }
         ]
     },
     {
