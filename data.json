@@ -14,7 +14,7 @@
             "label": "Paid",
             "title": "Placeholder",
             "url": "https://example.com/"
-        }
+        },
         "links": [
             { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
         ]
@@ -58,7 +58,7 @@
         "name": "HP-UX",
         "family": "Unix",
         "purpose": "Server",
-          "latestRelease": {
+        "latestRelease": {
                 "versionNumber": "11iv3",
                 "title": "Placeholder",
                 "url": "https://example.com/"
@@ -69,7 +69,7 @@
             "label": "Paid",
             "title": "Placeholder",
             "url": "https://example.com/"
-        }
+        },
         "links": [
             { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
         ]
