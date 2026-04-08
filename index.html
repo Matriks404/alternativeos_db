@@ -139,7 +139,7 @@
                     <td><span class="release">${releaseHTML}</span></td>
                     <td><span class="release-date">${os.releaseDate}</span></td>
                     <td><span class="license">${os.license}</span></td>
-                    <td><span class="${costHTML}">${os.cost}</span></td>
+                    <td><span class="${costClass}">${costHTML}</span></td>
                     <td>
                         <ul class="links-list">
                             ${os.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.text} →</a></li>`).join('')}
