@@ -1,6 +1,6 @@
 [
     {
-        "osName": "AIX (IBM)",
+        "name": "AIX (IBM)",
         "family": "Unix",
         "usage": "Server, Mainframe",
         "latestVersion": "7.3 TL4",
@@ -12,8 +12,8 @@
         ]
     },
     {
-        "osIconUrl": "./icons/freebsd.svg",
-        "osName": "FreeBSD",
+        "iconUrl": "./icons/freebsd.svg",
+        "name": "FreeBSD",
         "family": "Unix-like (BSD)",
         "usage": "General purpose",
         "latestVersion": "14.4-RELEASE",
@@ -26,7 +26,7 @@
         ]
     },
     {
-        "osName": "Haiku",
+        "name": "Haiku",
         "family": "BeOS-compatible",
         "usage": "Desktop",
         "latestVersion": "R1/Beta (Nightly)",
@@ -39,8 +39,8 @@
         ]
     },
     {
-        "osIconUrl": "./icons/hp.svg",
-        "osName": "HP-UX",
+        "iconUrl": "./icons/hp.svg",
+        "name": "HP-UX",
         "family": "Unix",
         "usage": "Server",
         "latestVersion": "11i v3",
@@ -52,8 +52,8 @@
         ]
     },
     {
-        "osIconUrl": "./icons/netbsd.svg",
-        "osName": "NetBSD",
+        "iconUrl": "./icons/netbsd.svg",
+        "name": "NetBSD",
         "family": "Unix-like (BSD)",
         "usage": "General purpose",
         "latestVersion": "10.1 RC3",
@@ -66,8 +66,8 @@
         ]
     },
     {
-        "osIconUrl": "./icons/reactos.svg",
-        "osName": "ReactOS",
+        "iconUrl": "./icons/reactos.svg",
+        "name": "ReactOS",
         "family": "NT-compatible",
         "usage": "Desktop",
         "latestVersion": "0.4.15-dev",
@@ -80,8 +80,8 @@
         ]
     },
     {
-        "osIconUrl": "./icons/ubuntu.svg",
-        "osName": "Ubuntu",
+        "iconUrl": "./icons/ubuntu.svg",
+        "name": "Ubuntu",
         "family": "Unix-like (Linux)",
         "usage": "General purpose",
         "latestVersion": "25.10",
