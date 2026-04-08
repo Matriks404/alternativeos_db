@@ -129,11 +129,10 @@ tr:last-child td {
 /* Cost link styling */
 .cost-link {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .cost-link:hover {
-    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -143,13 +142,12 @@ tr:last-child td {
 /* Release version link styling */
 .release-link {
     color: inherit; /* Keeps the text color the same as the table row */
-    text-decoration: none; /* No underline by default */
+    text-decoration: underline;
     border-bottom: 1px transparent; /* Prepares the underline area */
     transition: border-color 0.2s;
 }
 
 .release-link:hover {
-    text-decoration: underline; /* Standard underline on hover */
     cursor: pointer;
 }
 
