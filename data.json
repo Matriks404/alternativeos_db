@@ -67,7 +67,7 @@
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://www.netbsd.org/" },
-            { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" },
+            { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" }
         ]
     },
     {
