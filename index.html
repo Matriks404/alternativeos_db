@@ -15,7 +15,7 @@
     </header>
 
     <div class="controls">
-        <input type="text" id="searchInput" placeholder="Search OS name, usage, license...">
+        <input type="text" id="searchInput" placeholder="Search OS name, purpose, license...">
     </div>
 
     <div class="table-container">
@@ -98,7 +98,7 @@
                     </td>
                     <td><span class="os-name">${os.name}</span></td>
                     <td class="family">${os.family}</td>
-                    <td class="usage">${os.purpose}</td>
+                    <td class="purpose">${os.purpose}</td>
                     <td><span class="version">${os.latestVersion}</span></td>
                     <td><span class="release-date">${os.releaseDate}</span></td>
                     <td><span class="license">${os.license}</span></td>
@@ -121,7 +121,7 @@
             // Check major fields for a match
             return os.osName.toLowerCase().includes(searchTerm) ||
                    os.family.toLowerCase().includes(searchTerm) ||
-                   os.usage.toLowerCase().includes(searchTerm) ||
+                   os.purpose.toLowerCase().includes(searchTerm) ||
                    os.license.toLowerCase().includes(searchTerm);
         });
         renderTable(filteredData);
