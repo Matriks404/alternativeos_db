@@ -16,13 +16,14 @@
         "name": "FreeBSD",
         "family": "Unix-like (BSD)",
         "purpose": "General purpose",
-        "latestVersion": "14.4-RELEASE",
-        "releaseDate": "2026-03-10",
+        "latestVersion": "15.0-RELEASE",
+        "releaseDate": "2025-12-02",
         "license": "BSD",
         "cost": "Free",
         "links": [
-            { "text": "Release Notes", "url": "https://www.freebsd.org/releases/" },
-            { "text": "Hobbyist Forum", "url": "https://forums.freebsd.org/" }
+            { "text": "Project website", "url": "https://www.freebsd.org/" },
+            { "text": "About FreeBSD", "url": "https://www.freebsd.org/about/" },
+            { "text": "FreeBSD 15.0-RELEASE Release Notes", "url": "https://www.freebsd.org/releases/15.0R/relnotes/" }
         ]
     },
     {
@@ -56,13 +57,14 @@
         "name": "NetBSD",
         "family": "Unix-like (BSD)",
         "purpose": "General purpose",
-        "latestVersion": "10.1 RC3",
+        "latestVersion": "10.1",
         "releaseDate": "2024-12-16",
         "license": "BSD",
         "cost": "Free",
         "links": [
+            { "text": "Project website", "url": "https://www.netbsd.org/" },
+            { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" },
             { "text": "Announcing NetBSD 10.1", "url": "https://www.netbsd.org/releases/formal-10/NetBSD-10.1.html" },
-            { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" }
         ]
     },
     {
@@ -70,13 +72,14 @@
         "name": "ReactOS",
         "family": "NT-compatible",
         "purpose": "Desktop",
-        "latestVersion": "0.4.15-dev",
-        "releaseDate": "2026-01-23",
+        "latestVersion": "0.4.15",
+        "releaseDate": "2025-03-21",
         "license": "GPL",
         "cost": "Free",
         "links": [
-            { "text": "30th Anniv. Blog", "url": "https://reactos.org/blog/" },
-            { "text": "Status", "url": "https://reactos.org/wiki/Status" }
+            { "text": "Project website", "url": "https://reactos.org/" },
+            { "text": "What is ReactOS?", "url": "https://reactos.org/what-is-reactos/" },
+            { "text": "ReactOS 0.4.15 Released", "url": "https://reactos.org/project-news/reactos-0415-released/" }
         ]
     },
     {
