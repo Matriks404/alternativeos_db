@@ -103,11 +103,11 @@
 
         sortedData.forEach(os => {
             const costData = os.cost;
-            const costLabel = costData.label || costData; // e.g., "Free*", "Paid", or "Free"
+            const costLabel = costData.label || costData; // e.g., "Free (*)", "Paid", or "Free"
 
             // Determine CSS class
             let costClass = "cost-free";
-            if (costLabel === "Free*") costClass = "cost-limited";
+            if (costLabel === "Free (*)") costClass = "cost-limited";
             if (costLabel === "Paid") costClass = "cost-paid";
 
             // Determine if it's a link
