@@ -76,6 +76,12 @@
             const valA = a[currentSort.column];
             const valB = b[currentSort.column];
 
+            // Special check if we are sorting the latest release column
+            if (currentSort.column === 'latestRelease') {
+                valA = valA.versionNumber || '';
+                valB = valB.versionNumber || '';
+            }
+
             // Specific handling for dates (ISO format)
             if (currentSort.column === 'releaseDate') {
                 return currentSort.direction === 'asc'
@@ -91,6 +97,16 @@
 
         sortedData.forEach(os => {
             const costClass = os.cost.includes("Free") ? "cost-free" : "cost-paid";
+
+            const releaseData = os.latestRelease;
+            const releaseHTML = releaseData.url
+                ? `<a href="${releaseData.url}"
+                    class="release-link"
+                    title="${releaseData.title || 'View Release Notes'}"
+                    target="_blank"
+                    rel="noopener noreferrer">${releaseData.versionNumber}</a>`
+                : `<span>${releaseData.versionNumber || releaseData}</span>`;
+
             const rowHTML = `
                 <tr>
                     <td>
@@ -99,7 +115,7 @@
                     <td><span class="os-name">${os.name}</span></td>
                     <td class="family">${os.family}</td>
                     <td class="purpose">${os.purpose}</td>
-                    <td><span class="version">${os.latestVersion}</span></td>
+                    <td><span class="release">${releaseHTML}</span></td>
                     <td><span class="release-date">${os.releaseDate}</span></td>
                     <td><span class="license">${os.license}</span></td>
                     <td><span class="${costClass}">${os.cost}</span></td>
