@@ -12,7 +12,7 @@
         ]
     },
     {
-        "osIcon": "./icons/freebsd.svg",
+        "osIconUrl": "./icons/freebsd.svg",
         "osName": "FreeBSD",
         "family": "Unix-like (BSD)",
         "usage": "General purpose",
@@ -39,7 +39,7 @@
         ]
     },
     {
-        "osIcon": "./icons/hp.svg",
+        "osIconUrl": "./icons/hp.svg",
         "osName": "HP-UX",
         "family": "Unix",
         "usage": "Server",
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "osIcon": "./icons/netbsd.svg",
+        "osIconUrl": "./icons/netbsd.svg",
         "osName": "NetBSD",
         "family": "Unix-like (BSD)",
         "usage": "General purpose",
@@ -66,7 +66,7 @@
         ]
     },
     {
-        "osIcon": "./icons/reactos.svg",
+        "osIconUrl": "./icons/reactos.svg",
         "osName": "ReactOS",
         "family": "NT-compatible",
         "usage": "Desktop",
@@ -80,7 +80,7 @@
         ]
     },
     {
-        "osIcon": "./icons/ubuntu.svg",
+        "osIconUrl": "./icons/ubuntu.svg",
         "osName": "Ubuntu",
         "family": "Unix-like (Linux)",
         "usage": "General purpose",
