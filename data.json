@@ -1,21 +1,22 @@
 [
     {
-        "name": "AIX (IBM)",
+        "name": "IBM AIX",
         "family": "Unix",
         "purpose": "Server, Mainframe",
         "latestRelease": {
-                "versionNumber": "7.3 TL4",
-                "title": "Placeholder",
-                "url": "https://example.com/"
+                "versionNumber": "7.3 TL4 (7.3.4)",
+                "title": "AIX 7.3.4 Relase Notes",
+                "url": "https://www.ibm.com/docs/en/aix/7.3.0?topic=notes-aix-734-release"
         },
         "releaseDate": "2025-12-15",
         "license": "Proprietary",
         "cost": {
             "label": "Paid",
-            "title": "Placeholder",
-            "url": "https://example.com/"
+            "title": "TCO Calculator",
+            "url": "https://www.ibm.com/forms/mkt-52579"
         },
         "links": [
+            { "text": "Project website", "url": "https://www.ibm.com/products/aix" },
             { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
         ]
     },
@@ -50,28 +51,9 @@
         "license": "MIT",
         "cost": "Free",
         "links": [
+            { "text": "Project website", "url": "https://www.haiku-os.org/"},
+            { "text": "Haiku News", "url": "https://www.haiku-os.org/news/"}
             { "text": "What is Haiku?", "url": "https://www.haiku-os.org/about/" }
-        ]
-    },
-    {
-        "iconUrl": "https://cdn.simpleicons.org/hp/ffffff",
-        "name": "HP-UX",
-        "family": "Unix",
-        "purpose": "Server",
-        "latestRelease": {
-                "versionNumber": "11iv3",
-                "title": "Placeholder",
-                "url": "https://example.com/"
-        },
-        "releaseDate": "2025-12-31",
-        "license": "Proprietary",
-        "cost": {
-            "label": "Paid",
-            "title": "Placeholder",
-            "url": "https://example.com/"
-        },
-        "links": [
-            { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
         ]
     },
     {
@@ -89,6 +71,7 @@
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://www.netbsd.org/" },
+            { "text": "NetBSD Blog", "url": "https://blog.netbsd.org/"},
             { "text": "About NetBSD", "url": "https://www.netbsd.org/about/" }
         ]
     },
@@ -107,6 +90,7 @@
         "cost": "Free",
         "links": [
             { "text": "Project website", "url": "https://reactos.org/" },
+            { "text": "ReactOS News", "url": "https://reactos.org/news/"},
             { "text": "What is ReactOS?", "url": "https://reactos.org/what-is-reactos/" }
         ]
     },
@@ -124,10 +108,12 @@
         "license": "GPL",
         "cost": {
             "label": "Free (*)",
-            "title": "Placeholder",
-            "url": "https://example.com/"
+            "title": "Ubuntu Pricing",
+            "url": "https://ubuntu.com/pricing"
         },
         "links": [
+            { "text": "Project website", "url": "https://ubuntu.com/"},
+            { "text": "Ubuntu Blog", "url": "https://ubuntu.com/blog"},
             { "text": "About the Ubuntu project", "url": "https://ubuntu.com/about" }
         ]
     }
