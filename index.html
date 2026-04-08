@@ -94,9 +94,7 @@
             const rowHTML = `
                 <tr>
                     <td>
-                    <img src="${os.iconUrl || 'https://via.placeholder.com/24?text=?'}"
-                            alt="${os.name} logo"
-                            style="width: 24px; height: 24px; object-fit: contain; display: block;">
+                        ${os.iconUrl ? `<img src="${os.iconUrl}" alt="${os.name} logo" class="os-icon">` : ''}
                     </td>
                     <td><span class="os-name">${os.name}</span></td>
                     <td class="family">${os.family}</td>
