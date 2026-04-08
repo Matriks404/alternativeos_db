@@ -1,15 +1,14 @@
 [
     {
-        "osName": "NetBSD",
-        "family": "Unix-like (BSD)",
-        "usage": "General purpose",
-        "latestVersion": "11.0 RC3",
-        "releaseDate": "2026-04-04",
-        "license": "BSD",
-        "cost": "Free",
+        "osName": "AIX (IBM)",
+        "family": "Unix",
+        "usage": "Server, Mainframe",
+        "latestVersion": "7.3 TL4",
+        "releaseDate": "2025-12-15",
+        "license": "Proprietary",
+        "cost": "Paid ($$$)",
         "links": [
-            { "text": "Announcements", "url": "https://www.netbsd.org/releases/" },
-            { "text": "Status", "url": "https://www.netbsd.org/changes/" }
+            { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
         ]
     },
     {
@@ -39,6 +38,31 @@
         ]
     },
     {
+        "osName": "HP-UX",
+        "family": "Unix",
+        "usage": "Server",
+        "latestVersion": "11i v3 (Maint.)",
+        "releaseDate": "2025-12-31",
+        "license": "Proprietary / EOL",
+        "cost": "Paid (Maint.)",
+        "links": [
+            { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
+        ]
+    }
+    {
+        "osName": "NetBSD",
+        "family": "Unix-like (BSD)",
+        "usage": "General purpose",
+        "latestVersion": "11.0 RC3",
+        "releaseDate": "2026-04-04",
+        "license": "BSD",
+        "cost": "Free",
+        "links": [
+            { "text": "Announcements", "url": "https://www.netbsd.org/releases/" },
+            { "text": "Status", "url": "https://www.netbsd.org/changes/" }
+        ]
+    },
+    {
         "osName": "ReactOS",
         "family": "NT-compatible",
         "usage": "Desktop",
@@ -52,27 +76,16 @@
         ]
     },
     {
-        "osName": "AIX (IBM)",
-        "family": "Unix",
-        "usage": "Server, Mainframe",
-        "latestVersion": "7.3 TL4",
-        "releaseDate": "2025-12-15",
-        "license": "Proprietary",
-        "cost": "Paid ($$$)",
+        "osName": "Ubuntu",
+        "family": "Unix-like (Linux)",
+        "usage": "General purpose",
+        "latestVersion": "25.10",
+        "releaseDate": "2025-10-09",
+        "license": "GPL",
+        "cost": "Free",
         "links": [
-            { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
-        ]
-    },
-    {
-        "osName": "HP-UX (HPE)",
-        "family": "Unix",
-        "usage": "Server",
-        "latestVersion": "11i v3 (Maint.)",
-        "releaseDate": "2025-12-31",
-        "license": "Proprietary / EOL",
-        "cost": "Paid (Maint.)",
-        "links": [
-            { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
+            { "text": "Ubuntu 25.10 release notes", "url": "https://documentation.ubuntu.com/release-notes/25.10/" },
+            { "text": "About the Ubuntu project", "url": "https://ubuntu.com/about" }
         ]
     }
 ]
