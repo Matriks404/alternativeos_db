@@ -29,13 +29,13 @@
         "name": "Haiku",
         "family": "BeOS-compatible",
         "usage": "Desktop",
-        "latestVersion": "R1/Beta (Nightly)",
-        "releaseDate": "2026-04-01",
+        "latestVersion": "R1/beta5",
+        "releaseDate": "2024-09-13",
         "license": "MIT",
         "cost": "Free",
         "links": [
-            { "text": "Activity", "url": "https://discuss.haiku-os.org/" },
-            { "text": "Nightly Builds", "url": "https://download.haiku-os.org/" }
+            { "text": "R1/beta5 - Release Notes", "url": "https://www.haiku-os.org/get-haiku/r1beta5/release-notes/" },
+            { "text": "What is Haiku?", "url": "https://www.haiku-os.org/about/" }
         ]
     },
     {
