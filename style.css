@@ -123,7 +123,19 @@ tr:last-child td {
 .license { font-size: 0.8rem; padding: 4px 8px; background: #333; border-radius: 4px; color: #eee;}
 
 .cost-free { color: #a3e635; font-weight: 500;} /* Green */
+.cost-limited { color: #fb923c; font-weight: 500; } /* Orange for Free* */
 .cost-paid { color: #f87171; font-weight: 500;} /* Red */
+
+/* Cost link styling */
+.cost-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cost-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .release-date { font-family: var(--font-mono); color: #ccc;}
 .release { font-family: var(--font-mono); color: #fff; }

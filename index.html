@@ -82,6 +82,12 @@
                 valB = valB.versionNumber || '';
             }
 
+            // Special check if we are sorting the cost column
+            if (currentSort.column === 'cost') {
+                valA = valA.label || '';
+                valB = valB.label || '';
+            }
+
             // Specific handling for dates (ISO format)
             if (currentSort.column === 'releaseDate') {
                 return currentSort.direction === 'asc'
@@ -96,7 +102,22 @@
         });
 
         sortedData.forEach(os => {
-            const costClass = os.cost.includes("Free") ? "cost-free" : "cost-paid";
+            const costData = os.cost;
+            const costLabel = costData.label || costData; // e.g., "Free*", "Paid", or "Free"
+
+            // Determine CSS class
+            let costClass = "cost-free";
+            if (costLabel === "Free*") costClass = "cost-limited";
+            if (costLabel === "Paid") costClass = "cost-paid";
+
+            // Determine if it's a link
+            const costHTML = (costData.url)
+                ? `<a href="${costData.url}"
+                    class="cost-link ${costClass}"
+                    title="${costData.title || 'View Pricing Details'}"
+                    target="_blank"
+                    rel="noopener noreferrer">${costLabel}</a>`
+                : `<span class="${costClass}">${costLabel}</span>`;
 
             const releaseData = os.latestRelease;
             const releaseHTML = releaseData.url
@@ -118,7 +139,7 @@
                     <td><span class="release">${releaseHTML}</span></td>
                     <td><span class="release-date">${os.releaseDate}</span></td>
                     <td><span class="license">${os.license}</span></td>
-                    <td><span class="${costClass}">${os.cost}</span></td>
+                    <td><span class="${costHTML}">${os.cost}</span></td>
                     <td>
                         <ul class="links-list">
                             ${os.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.text} →</a></li>`).join('')}

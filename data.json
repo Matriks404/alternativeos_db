@@ -10,7 +10,11 @@
         },
         "releaseDate": "2025-12-15",
         "license": "Proprietary",
-        "cost": "Paid ($$$)",
+        "cost": {
+            "label": "Paid",
+            "title": "Placeholder",
+            "url": "https://example.com/"
+        }
         "links": [
             { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
         ]
@@ -61,7 +65,11 @@
         },
         "releaseDate": "2025-12-31",
         "license": "Proprietary",
-        "cost": "Paid",
+        "cost": {
+            "label": "Paid",
+            "title": "Placeholder",
+            "url": "https://example.com/"
+        }
         "links": [
             { "text": "HPE Roadmap", "url": "https://www.hpe.com/info/hpux" }
         ]
@@ -114,7 +122,11 @@
         },
         "releaseDate": "2025-10-09",
         "license": "GPL",
-        "cost": "Free",
+        "cost": {
+            "label": "Free*",
+            "title": "Placeholder"
+            "url": "https://example.com/"
+        },
         "links": [
             { "text": "About the Ubuntu project", "url": "https://ubuntu.com/about" }
         ]
