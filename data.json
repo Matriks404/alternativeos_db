@@ -1,26 +1,5 @@
 [
     {
-        "name": "IBM AIX",
-        "family": "Unix",
-        "purpose": "Server, Mainframe",
-        "latestRelease": {
-                "versionNumber": "7.3 TL4 (7.3.4)",
-                "title": "AIX 7.3.4 Relase Notes",
-                "url": "https://www.ibm.com/docs/en/aix/7.3.0?topic=notes-aix-734-release"
-        },
-        "releaseDate": "2025-12-15",
-        "license": "Proprietary",
-        "cost": {
-            "label": "Paid",
-            "title": "TCO Calculator",
-            "url": "https://www.ibm.com/forms/mkt-52579"
-        },
-        "links": [
-            { "text": "Project website", "url": "https://www.ibm.com/products/aix" },
-            { "text": "IBM Support", "url": "https://www.ibm.com/support/pages/aix-support-lifecycle" }
-        ]
-    },
-    {
         "iconUrl": "https://cdn.simpleicons.org/freebsd/ffffff",
         "name": "FreeBSD",
         "family": "Unix-like (BSD)",
