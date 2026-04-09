@@ -73,8 +73,8 @@
 
         // Apply sorting
         const sortedData = [...data].sort((a, b) => {
-            const valA = a[currentSort.column];
-            const valB = b[currentSort.column];
+            let valA = a[currentSort.column];
+            let valB = b[currentSort.column];
 
             // Special check if we are sorting the latest release column
             if (currentSort.column === 'latestRelease') {
@@ -84,8 +84,8 @@
 
             // Special check if we are sorting the cost column
             if (currentSort.column === 'cost') {
-                valA = valA.label || '';
-                valB = valB.label || '';
+                valA = valA.label !== undefined ? valA.label : valA;
+                valB = valB.label !== undefined ? valB.label : valB;
             }
 
             // Specific handling for dates (ISO format)
