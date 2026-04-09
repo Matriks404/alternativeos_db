@@ -108,13 +108,12 @@
             // Determine CSS class
             let costClass = "cost-free";
             if (costLabel === "Free (*)") costClass = "cost-limited";
-            if (costLabel === "Paid") costClass = "cost-paid";
 
             // Determine if it's a link
             const costHTML = (costData.url)
                 ? `<a href="${costData.url}"
                     class="cost-link ${costClass}"
-                    title="${costData.title || 'View Pricing Details'}"
+                    title="${costData.title || 'Go to pricing details.'}"
                     target="_blank"
                     rel="noopener noreferrer">${costLabel}</a>`
                 : `<span class="${costClass}">${costLabel}</span>`;
@@ -123,7 +122,7 @@
             const releaseHTML = releaseData.url
                 ? `<a href="${releaseData.url}"
                     class="release-link"
-                    title="${releaseData.title || 'View Release Notes'}"
+                    title="${releaseData.title || 'Go to release notes.'}"
                     target="_blank"
                     rel="noopener noreferrer">${releaseData.versionNumber}</a>`
                 : `<span>${releaseData.versionNumber || releaseData}</span>`;
