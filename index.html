@@ -134,62 +134,69 @@
     }
 
     // Handle searching/filtering
-    function handleSearch(query) {
-        const input = query.toLowerCase().trim();
+function handleSearch(query) {
+    const input = query.trim();
 
-        // Update the URL as the user types
-        const newUrl = input
-            ? `${window.location.pathname}?q=${encodeURIComponent(input)}`
-            : window.location.pathname;
+    // Update the URL
+    const newUrl = input
+        ? `${window.location.pathname}?q=${encodeURIComponent(input)}`
+        : window.location.pathname;
+    window.history.replaceState(null, '', newUrl);
 
-        window.history.replaceState(null, '', newUrl);
+    if (!input) {
+        renderTable(osData);
+        return;
+    }
 
-        if (!input) {
-            renderTable(osData);
-            return;
-        }
+    // This Regex splits by spaces but ignores spaces inside double quotes
+    // It captures: [-][facet:]["quoted text" or word]
+    const tokenRegex = /(-?\w+:?"[^"]+"|-?\w+:?\S+)/g;
+    const tokens = input.match(tokenRegex) || [];
 
+    const facets = {
+        'name:': 'name',
+        'family:': 'family',
+        'purpose:': 'purpose',
+        'license:': 'license'
+    };
 
-        if (!input) {
-            renderTable(osData);
-            return;
-        }
+    let filteredData = osData.filter(os => {
+        // Every single token must match (AND logic)
+        return tokens.every(token => {
+            let currentToken = token;
+            const isNegated = currentToken.startsWith('-');
+            if (isNegated) currentToken = currentToken.substring(1);
 
-        const facets = {
-            'name:': 'name',
-            'family:': 'family',
-            'purpose:': 'purpose',
-            'license:': 'license'
-        };
+            // Check if this token is a facet
+            const activeFacetKey = Object.keys(facets).find(f => currentToken.toLowerCase().startsWith(f));
 
-        const isNegated = input.startsWith('-');
-        // Remove the '-' if it exists for parsing
-        const cleanInput = isNegated ? input.substring(1) : input;
+            let matches = false;
 
-        // Check if it's a faceted search (e.g., "family:bsd" or "-family:linux")
-        const activeFacetKey = Object.keys(facets).find(f => cleanInput.startsWith(f));
-
-        let filteredData = osData.filter(os => {
             if (activeFacetKey) {
                 // FACETED SEARCH
-                const query = cleanInput.replace(activeFacetKey, '').trim();
                 const field = facets[activeFacetKey];
-                const matches = String(os[field] || '').toLowerCase().includes(query);
-                return isNegated ? !matches : matches;
+                let value = currentToken.substring(activeFacetKey.length).toLowerCase();
+                // Strip quotes if they exist
+                value = value.replace(/^"|"$/g, '');
+
+                matches = String(os[field] || '').toLowerCase().includes(value);
             } else {
                 // GLOBAL SEARCH
-                const matches = (
-                    os.name.toLowerCase().includes(cleanInput) ||
-                    os.family.toLowerCase().includes(cleanInput) ||
-                    os.purpose.toLowerCase().includes(cleanInput) ||
-                    os.license.toLowerCase().includes(cleanInput)
+                let value = currentToken.toLowerCase().replace(/^"|"$/g, '');
+                matches = (
+                    os.name.toLowerCase().includes(value) ||
+                    os.family.toLowerCase().includes(value) ||
+                    os.purpose.toLowerCase().includes(value) ||
+                    os.license.toLowerCase().includes(value)
                 );
-                return isNegated ? !matches : matches;
             }
-        });
 
-        renderTable(filteredData);
-    }
+            return isNegated ? !matches : matches;
+        });
+    });
+
+    renderTable(filteredData);
+}
 
     // Handle sorting when a header is clicked
     function sortTable(columnName) {
