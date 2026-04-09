@@ -15,7 +15,7 @@
     </header>
 
     <div class="controls">
-        <input type="text" id="searchInput" placeholder="Search OS name, purpose, license...">
+        <input type="text" id="searchInput" placeholder="Search or use terms like license:gpl or -family:bsd.">
     </div>
 
     <div class="table-container">
@@ -43,23 +43,6 @@
     // --- JavaScript: Loading and Managing Data ---
     let osData = [];
     let currentSort = { column: 'releaseDate', direction: 'desc' }; // Default sort
-
-    // Fetch the JSON file
-    document.addEventListener("DOMContentLoaded", () => {
-        fetch('data.json')
-            .then(response => {
-                if (!response.ok) { throw new Error("Could not load data.json."); }
-                return response.json();
-            })
-            .then(data => {
-                osData = data;
-                renderTable(osData);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById('tableBody').innerHTML = `<tr><td colspan="8" style="text-align:center; color:red;">Error loading data. Make sure 'data.json' exists.</td></tr>`;
-            });
-    });
 
     // Render data into the table body
     function renderTable(data) {
@@ -151,17 +134,62 @@
     }
 
     // Handle searching/filtering
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredData = osData.filter(os => {
-            // Check major fields for a match
-            return os.osName.toLowerCase().includes(searchTerm) ||
-                   os.family.toLowerCase().includes(searchTerm) ||
-                   os.purpose.toLowerCase().includes(searchTerm) ||
-                   os.license.toLowerCase().includes(searchTerm);
+    function handleSearch(query) {
+        const input = query.toLowerCase().trim();
+
+        // Update the URL as the user types
+        const newUrl = input
+            ? `${window.location.pathname}?q=${encodeURIComponent(input)}`
+            : window.location.pathname;
+
+        window.history.replaceState(null, '', newUrl);
+
+        if (!input) {
+            renderTable(osData);
+            return;
+        }
+
+
+        if (!input) {
+            renderTable(osData);
+            return;
+        }
+
+        const facets = {
+            'name:': 'name',
+            'family:': 'family',
+            'purpose:': 'purpose',
+            'license:': 'license'
+        };
+
+        const isNegated = input.startsWith('-');
+        // Remove the '-' if it exists for parsing
+        const cleanInput = isNegated ? input.substring(1) : input;
+
+        // Check if it's a faceted search (e.g., "family:bsd" or "-family:linux")
+        const activeFacetKey = Object.keys(facets).find(f => cleanInput.startsWith(f));
+
+        let filteredData = osData.filter(os => {
+            if (activeFacetKey) {
+                // FACETED SEARCH
+                const query = cleanInput.replace(activeFacetKey, '').trim();
+                const field = facets[activeFacetKey];
+                const matches = String(os[field] || '').toLowerCase().includes(query);
+                return isNegated ? !matches : matches;
+            } else {
+                // GLOBAL SEARCH
+                const matches = (
+                    os.name.toLowerCase().includes(cleanInput) ||
+                    os.family.toLowerCase().includes(cleanInput) ||
+                    os.purpose.toLowerCase().includes(cleanInput) ||
+                    os.license.toLowerCase().includes(cleanInput)
+                );
+                return isNegated ? !matches : matches;
+            }
         });
+
         renderTable(filteredData);
-    });
+    }
 
     // Handle sorting when a header is clicked
     function sortTable(columnName) {
@@ -175,6 +203,48 @@
         }
         renderTable(osData);
     }
+
+    // Fetch the JSON file
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            osData = data;
+
+            // 1. Initial render
+            renderTable(osData);
+
+            // 2. NOW check for URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+
+            if (query) {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = query;
+
+                // 3. Trigger the search now that osData is guaranteed to exist
+                handleSearch(query);
+            }
+        })
+        .catch(error => console.error('Error loading OS data:', error));
+
+    window.addEventListener('DOMContentLoaded', () => {
+        // 1. Look for ?q= in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+
+        if (query) {
+            // 2. Put the query into the search box visually
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = query;
+
+            // 3. Manually trigger the search logic
+            handleSearch({ target: searchInput });
+        }
+    });
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        handleSearch(e.target.value);
+    });
 </script>
 
 </body>
