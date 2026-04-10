@@ -1,0 +1,211 @@
+let osData = [];
+let currentSort = { column: 'releaseDate', direction: 'desc' }; // Default sort
+
+// Render data into the table body
+function renderTable(data) {
+	const tableBody = document.getElementById('tableBody');
+	tableBody.innerHTML = ''; // Clear current rows
+
+	if (data.length === 0) {
+		tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:#aaa;">No matching systems found.</td></tr>`;
+		return;
+	}
+
+	// Apply sorting
+	const sortedData = [...data].sort((a, b) => {
+		let valA = a[currentSort.column];
+		let valB = b[currentSort.column];
+
+		// Special check if we are sorting the latest release column
+		if (currentSort.column === 'latestRelease') {
+			valA = valA.versionNumber || '';
+			valB = valB.versionNumber || '';
+		}
+
+		// Special check if we are sorting the cost column
+		if (currentSort.column === 'cost') {
+			valA = valA.label !== undefined ? valA.label : valA;
+			valB = valB.label !== undefined ? valB.label : valB;
+		}
+
+		// Specific handling for dates (ISO format)
+		if (currentSort.column === 'releaseDate') {
+			return currentSort.direction === 'asc'
+				? new Date(valA) - new Date(valB)
+				: new Date(valB) - new Date(valA);
+		}
+
+		// Normal string handling
+		return currentSort.direction === 'asc'
+			? valA.localeCompare(valB)
+			: valB.localeCompare(valA);
+	});
+
+	sortedData.forEach(os => {
+		const costData = os.cost;
+		const costLabel = costData.label || costData; // e.g., "Free (*)", "Paid", or "Free"
+
+		// Determine CSS class
+		let costClass = "cost-free";
+		if (costLabel === "Free (*)") costClass = "cost-limited";
+
+		// Determine if it's a link
+		const costHTML = (costData.url)
+			? `<a href="${costData.url}"
+				class="cost-link ${costClass}"
+				title="${costData.title || 'Go to pricing details.'}"
+				target="_blank"
+				rel="noopener noreferrer">${costLabel}</a>`
+			: `<span class="${costClass}">${costLabel}</span>`;
+
+		const releaseData = os.latestRelease;
+		const releaseHTML = releaseData.url
+			? `<a href="${releaseData.url}"
+				class="release-link"
+				title="${releaseData.title || 'Go to release notes.'}"
+				target="_blank"
+				rel="noopener noreferrer">${releaseData.versionNumber}</a>`
+			: `<span>${releaseData.versionNumber || releaseData}</span>`;
+
+		const rowHTML = `
+			<tr>
+				<td>
+					${os.iconUrl ? `<img src="${os.iconUrl}" alt="${os.name} logo" class="os-icon">` : ''}
+				</td>
+				<td><span class="os-name">${os.name}</span></td>
+				<td class="family">${os.family}</td>
+				<td class="purpose">${os.purpose}</td>
+				<td><span class="release">${releaseHTML}</span></td>
+				<td><span class="release-date">${os.releaseDate}</span></td>
+				<td><span class="license">${os.license}</span></td>
+				<td><span class="${costClass}">${costHTML}</span></td>
+				<td>
+					<ul class="links-list">
+						${os.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.text} →</a></li>`).join('')}
+					</ul>
+				</td>
+			</tr>
+		`;
+		tableBody.insertAdjacentHTML('beforeend', rowHTML);
+	});
+}
+
+// Handle searching/filtering
+function handleSearch(query) {
+const input = query.trim();
+
+// Update the URL
+const newUrl = input
+	? `${window.location.pathname}?q=${encodeURIComponent(input)}`
+	: window.location.pathname;
+window.history.replaceState(null, '', newUrl);
+
+if (!input) {
+	renderTable(osData);
+	return;
+}
+
+// This Regex splits by spaces but ignores spaces inside double quotes
+// It captures: [-][facet:]["quoted text" or word]
+const tokenRegex = /(-?\w+:?"[^"]+"|-?\w+:?\S+)/g;
+const tokens = input.match(tokenRegex) || [];
+
+const facets = {
+	'name:': 'name',
+	'family:': 'family',
+	'purpose:': 'purpose',
+	'license:': 'license'
+};
+
+let filteredData = osData.filter(os => {
+	// Every single token must match (AND logic)
+	return tokens.every(token => {
+		let currentToken = token;
+		const isNegated = currentToken.startsWith('-');
+		if (isNegated) currentToken = currentToken.substring(1);
+
+		// Check if this token is a facet
+		const activeFacetKey = Object.keys(facets).find(f => currentToken.toLowerCase().startsWith(f));
+
+		let matches = false;
+
+		if (activeFacetKey) {
+			// FACETED SEARCH
+			const field = facets[activeFacetKey];
+			let value = currentToken.substring(activeFacetKey.length).toLowerCase();
+			// Strip quotes if they exist
+			value = value.replace(/^"|"$/g, '');
+
+			matches = String(os[field] || '').toLowerCase().includes(value);
+		} else {
+			// GLOBAL SEARCH
+			let value = currentToken.toLowerCase().replace(/^"|"$/g, '');
+			matches = (
+				os.name.toLowerCase().includes(value) ||
+				os.family.toLowerCase().includes(value) ||
+				os.purpose.toLowerCase().includes(value) ||
+				os.license.toLowerCase().includes(value)
+			);
+		}
+
+		return isNegated ? !matches : matches;
+	});
+});
+
+renderTable(filteredData);
+}
+
+// Handle sorting when a header is clicked
+function sortTable(columnName) {
+	if (currentSort.column === columnName) {
+		// Toggle direction
+		currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+	} else {
+		// Sort new column ascending
+		currentSort.column = columnName;
+		currentSort.direction = 'asc';
+	}
+	renderTable(osData);
+}
+
+// Fetch the JSON file
+fetch('data.json')
+	.then(response => response.json())
+	.then(data => {
+		osData = data;
+
+		// 1. Initial render
+		renderTable(osData);
+
+		// 2. NOW check for URL parameters
+		const urlParams = new URLSearchParams(window.location.search);
+		const query = urlParams.get('q');
+
+		if (query) {
+			const searchInput = document.getElementById('searchInput');
+			if (searchInput) searchInput.value = query;
+
+			// 3. Trigger the search now that osData is guaranteed to exist
+			handleSearch(query);
+		}
+	})
+	.catch(error => console.error('Error loading OS data:', error));
+
+window.addEventListener('DOMContentLoaded', () => {
+	// 1. Look for ?q= in the URL
+	const urlParams = new URLSearchParams(window.location.search);
+	const query = urlParams.get('q');
+
+	if (query) {
+		// 2. Put the query into the search box visually
+		const searchInput = document.getElementById('searchInput');
+		searchInput.value = query;
+
+		// 3. Manually trigger the search logic
+		handleSearch({ target: searchInput });
+	}
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+	handleSearch(e.target.value);
+});
